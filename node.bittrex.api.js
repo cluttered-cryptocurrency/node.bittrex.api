@@ -168,6 +168,10 @@ var NodeBittrexApi = function() {
       },
       disconnected: function() {
         ((opts.verbose) ? console.log('Websocket disconnected') : '');
+        // restart on disconnect
+        setImmediate(function () {
+            wsclient.start();
+        });
       },
       onerror: function(error) {
         ((opts.verbose) ? console.log('Websocket onerror: ', error) : '');
